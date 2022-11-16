@@ -1,8 +1,8 @@
 import React from 'react';
-import MainContainer from './containers/MainContainer.jsx'
+import LoginContainer from './containers/LoginContainer.jsx'
 
 export default function App() {
   return (
-    <MainContainer />
+    <LoginContainer />
   );
 }
