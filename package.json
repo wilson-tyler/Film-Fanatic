@@ -1,0 +1,55 @@
+{
+  "name": "film-fanatic",
+  "version": "1.0.0",
+  "description": "Save your favorite films.",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node server/server.js",
+    "build": "cross-env NODE_ENV=production webpack",
+    "dev": "concurrently \"cross-env NODE_ENV=development webpack-dev-server --progress --color\" \"nodemon ./server/server.js\"",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wilson-tyler/Film-Fanatic.git"
+  },
+  "author": "Tyler Wilson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wilson-tyler/Film-Fanatic/issues"
+  },
+  "homepage": "https://github.com/wilson-tyler/Film-Fanatic#readme",
+  "devDependencies": {
+    "@babel/core": "^7.18.9",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.2.3",
+    "concurrently": "^7.5.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.7.2",
+    "html-webpack-plugin": "^5.5.0",
+    "nodemon": "^2.0.20",
+    "pg": "^8.8.0",
+    "postcss-loader": "^7.0.1",
+    "react-dom": "^18.2.0",
+    "sass": "^1.56.1",
+    "sass-loader": "^13.2.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.1"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dom": "^0.0.3",
+    "express": "^4.18.2",
+    "react": "^18.2.0"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "server/data/*",
+      "client/*"
+    ]
+  }
+}
