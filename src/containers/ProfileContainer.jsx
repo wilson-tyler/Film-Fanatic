@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import NavBar from './NavContainer.jsx';
 
 export default function ProfilePage() {
   const [userData, setUserData] = useState();
@@ -14,7 +15,10 @@ export default function ProfilePage() {
   }, [])
 
   return(
-    <div>Profile
+    <div>
+      <NavBar/>
+      <br/><br/>
+      Profile
       <div>{userData}</div>
     </div>
   )
