@@ -6,7 +6,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production node server/server.js",
     "build": "cross-env NODE_ENV=production webpack",
-    "dev": "concurrently \"cross-env NODE_ENV=development webpack-dev-server --progress --color\" \"nodemon ./server/server.js\"",
+    "dev": "concurrently \"cross-env NODE_ENV=development webpack-dev-server --progress --color\" \"env-cmd -f ./.env nodemon ./server/server.js\"",
     "test": "jest"
   },
   "repository": {
@@ -27,19 +27,30 @@
     "concurrently": "^7.5.0",
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.2",
+    "dotenv-webpack": "^8.0.1",
     "html-webpack-plugin": "^5.5.0",
+    "jest": "^29.3.1",
+    "jest-environment-jsdom": "^28.1.0",
+    "jest-puppeteer": "^6.1.0",
     "nodemon": "^2.0.20",
     "pg": "^8.8.0",
     "postcss-loader": "^7.0.1",
-    "react-dom": "^18.2.0",
+    "puppeteer": "^14.2.1",
+    "react-test-renderer": "^17.0.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "sass": "^1.56.1",
     "sass-loader": "^13.2.0",
     "style-loader": "^3.3.1",
+    "supertest": "^6.3.1",
     "webpack": "^5.75.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
+    "@testing-library/jest-dom": "^5.15.0",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@fontsource/roboto": "^4.5.8",
@@ -48,8 +59,8 @@
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dom": "^0.0.3",
-    "express": "^4.18.2",
-    "react": "^18.2.0"
+    "env-cmd": "^10.1.0",
+    "express": "^4.18.2"
   },
   "nodemonConfig": {
     "ignore": [
