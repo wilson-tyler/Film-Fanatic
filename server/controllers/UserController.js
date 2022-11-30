@@ -15,5 +15,17 @@ UserController.getProfileData = async (req, res, next) => {
   }
 }
 
+UserController.getLoginData = async (req, res, next) => {
+  const { code } = req.query;
+
+  if (!code) {
+    next({
+      log: 'Error caught in UserController.getLoginData handler',
+      message: {err: 'Error caught in UserController.getLoginData handler'}
+    })
+  }
+  
+  next();
+ }
 
 module.exports = UserController;

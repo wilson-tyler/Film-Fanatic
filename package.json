@@ -7,7 +7,7 @@
     "start": "cross-env NODE_ENV=production node server/server.js",
     "build": "cross-env NODE_ENV=production webpack",
     "dev": "concurrently \"cross-env NODE_ENV=development webpack-dev-server --progress --color\" \"env-cmd -f ./.env nodemon ./server/server.js\"",
-    "test": "jest --verbose"
+    "test": "jest --verbose --coverage"
   },
   "repository": {
     "type": "git",
@@ -68,6 +68,7 @@
     "dom": "^0.0.3",
     "env-cmd": "^10.1.0",
     "express": "^4.18.2",
+    "googleapis": "^109.0.1",
     "whatwg-fetch": "^3.6.2"
   },
   "nodemonConfig": {

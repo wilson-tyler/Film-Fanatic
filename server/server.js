@@ -6,6 +6,7 @@ const express = require('express');
 const server = express();
 const PORT = process.env.PORT || 3000;
 const userRouter = require('./routes/userRouter')
+const loginRouter = require('./routes/loginRouter')
 
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
@@ -13,6 +14,8 @@ server.use(cookieParser());
 server.use(cors({ origin: 'https://localhost:8080'}));
 
 server.use('/user', userRouter);
+
+server.use('/home', loginRouter);
 
 server.get('/', (req, res) => res.status(200).sendFile(path.join(__dirname, '../index.html')));
 
