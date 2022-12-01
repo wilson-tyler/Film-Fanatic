@@ -19,7 +19,6 @@ server.use('/home', loginRouter);
 
 server.get('/', (req, res) => res.status(200).sendFile(path.join(__dirname, '../index.html')));
 
-
 server.use('*', (req, res) => res.status(404).send('404 Error: Page not found'))
 
 server.use((err, req, res, next) => {

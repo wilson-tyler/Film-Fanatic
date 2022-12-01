@@ -5,9 +5,12 @@ import HomeContainer from './HomeContainer.jsx'
 export default function LoginContainer() {
   const [loggedIn, setLoggedIn] = useState(false);
 
-  // const getGithub = async () => {
   //   window.open(`https://github.com/login/oauth/authorize?client_id=${process.env.CLIENT_ID}`, 'GitHub', 'toolbar=no, menubar=no, width=600, height=700, top=100, left=100')
-  // }
+
+  useEffect(() => {
+    console.log(document.cookie)
+    if (document.cookie.split('; ').find(row => row.startsWith('code='))?.split('=')[1] !== undefined) setLoggedIn(true);
+  });
 
   return (
     loggedIn

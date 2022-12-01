@@ -19,21 +19,29 @@ module.exports = {
     hot: true,
     historyApiFallback: true,
     static: {
-      directory: path.resolve(__dirname, './dist/'),
-      publicPath: './dist',
+      directory: path.resolve(__dirname, 'dist'),
+      publicPath: '/dist',
     },
     proxy: {
-      './dist/**': {
-        target: 'http://localhost:3000/',
-        secure: false,
-      },
       '/**': {
         target: 'http://localhost:3000/',
         secure: false,
+        changeOrigin: true,
       },
       '/assets/**': {
         target: 'http://localhost:3000/',
         secure: false,
+        changeOrigin: true,
+      },
+      '/home?code=**': {
+        target: 'http://localhost:3000/',
+        secure: false,
+        changeOrigin: true,
+      },
+      '/signedin': {
+        target: 'http://localhost:3000/',
+        secure: false,
+        changeOrigin: true,
       },
     },
   },

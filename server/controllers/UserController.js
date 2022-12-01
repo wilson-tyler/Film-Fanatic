@@ -1,4 +1,5 @@
 const db = require('../Model');
+const request = require('superagent');
 const UserController = {};
 
 UserController.getProfileData = async (req, res, next) => {
@@ -24,8 +25,46 @@ UserController.getLoginData = async (req, res, next) => {
       message: {err: 'Error caught in UserController.getLoginData handler'}
     })
   }
-  
-  next();
+
+  request
+  .post('https://github.com/login/oauth/access_token')
+  .send({
+    client_id: process.env.CLIENT_ID,
+    client_secret: process.env.CLIENT_SECRET,
+    code: code
+  })
+  .set('Accept', 'application/json')
+  .then(result => {
+    res.locals.data = result.body;
+    res.locals.code = code;
+    next();
+  })
+ }
+
+ UserController.approveAccessToken = async (req, res, next) => {
+   const { access_token } = res.locals.data;
+
+   request
+   .get('https://api.github.com/user')
+   .set({ 
+    'Authorization': `Bearer ${access_token}`,
+    'User-Agent': 'Film Fanatic',
+    'Accept': "application/vnd.github.v3+json" 
+  })
+   .then(result => {
+     console.log(result.body)
+     res.locals.user = result.body;
+     next()
+   })
+ }
+
+ UserController.createUser = async (req, res, next) => {
+   const { login, name, id } = res.locals.user;
+   const values = [login, name];
+
+   await db.query(`INSERT INTO profile (UserName, Name) VALUES ($1, $2)`, values);
+   res.cookie('code', res.locals.code);
+   next();
  }
 
 module.exports = UserController;
