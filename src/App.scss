@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(242, 242, 242);
+  background-color: rgb(255, 255, 255);
 }
 
 .moviePoster {
@@ -56,4 +56,19 @@ li a:hover {
 
 .active {
   background-color: #04AA6D;
+}
+
+#loginContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+#githubOAuth {
+  background-image: url('https://miro.medium.com/max/719/0*LqBi2dONH28oTKVX.png');
+  width: 250px;
+  height: 140px;
+  background-size: 100%;
 }
