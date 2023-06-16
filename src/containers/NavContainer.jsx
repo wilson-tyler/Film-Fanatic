@@ -1,17 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import ProfilePage from './ProfileContainer.jsx';
 
-export default function NavContainer() {
-  const [profile, setProfile] = useState(false);
+export default function NavContainer({click, page, pages, addPage}) {
+
+  const renderList = () => {
+    const menuList = [];
+    for (const comp of pages) {
+      menuList.push(<a className={comp} onClick={() => click(comp)} key={comp}>{comp}</a>)
+    }
+    return menuList;
+  }
+
+  useEffect(() => renderList(), [])
 
   return (
-    profile
-    ? <ProfilePage />
-    : <ul>
-      <li><a href="default.asp">Home</a></li>
-      <li><a href="news.asp">News</a></li>
-      <li><a href="contact.asp">Contact</a></li>
-      <li style={{ float: "right" }}><a onClick={() => setProfile(true)}>Profile</a></li>
-    </ul>
+    <div>
+      <div className="dropdown">
+        <button className="dropbtn">{page}</button>
+        <div className="dropdown-content">
+          {renderList()}
+        </div>
+      </div>
+      <span>
+        <input placeholder="Enter page title" className='pageNameInput'></input>
+        <button className='addPageBtn' onClick={() => addPage(document.getElementsByClassName("pageNameInput")[0].value)}>Add page</button>
+      </span>
+    </div>
   );
 }

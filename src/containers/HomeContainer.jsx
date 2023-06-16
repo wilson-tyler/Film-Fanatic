@@ -1,35 +1,40 @@
 import React, { useState, useEffect } from 'react';
-import NavBar from './NavContainer.jsx';
+import { ReactGrid, CellChange, TextCell } from "@silevis/reactgrid";
+import "@silevis/reactgrid/styles.css";
+import "../App.scss";
+import NavBar from "./NavContainer.jsx"
+import Dashboard from '../components/Dashboard';
+import Transactions from '../components/Transactions';
+import PendingSaleDates from '../components/PendingSaleDates';
 
 
 export default function HomeContainer() {
-  const [movies, setMovies] = useState();
+  const stockList = ["Dashboard", "Transactions", "Pending Sale Dates", "Appointments", "Buyer Rotation", "Monthly Touches", "PCSOI"];
+  const [page, setPage] = useState("Dashboard")
+  const [pages, setPages] = useState(stockList);
 
-  const renderPopular = () => {
-    const newList = [];
-    let ranking = 1;
-    fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.API_KEY}&language=en-US&page=1`)
-      .then(data => data.json())
-      .then(data => {
-        for (let film of data.results) {
-          let poster = `https://image.tmdb.org/t/p/original/${film.poster_path}`
-          newList.push(<div key={ranking}>{ranking}: {film.title}<img className='moviePoster' src={poster} /></div>);
-          ranking++;
-        }
-        ranking = 1;
-        setMovies(newList);
-      })
+  let selectedPage;
+  if (page === 'Dashboard') {
+    selectedPage = <div className="DisplayBox"><Dashboard /></div>;
+  } else if (page === 'Transactions') {
+    selectedPage = <div className="DisplayBox"><Transactions /></div>;
+  } else if (page === 'Pending Sale Dates') {
+    selectedPage = <div className="DisplayBox"><PendingSaleDates /></div>;
   }
 
-  useEffect(() => renderPopular(), [])
+  const addPages = (newPage) => {
+    const pageList = [...pages];
+    pageList.push(newPage);
+    setPages(pageList);
+  }
 
-  return (
-    <div className="movieListType">
-      <NavBar />
-      <br /><br />
-      <div className='filmFanaticHomeTitle'>FILM FANATIC</div>
-      Popular Movies of Today
-      <div className='movieTable'>{movies}</div>
+    return (
+    <div>
+      <NavBar click={setPage} page={page} pages={pages} addPage={addPages}/>
+      <br></br>
+      <div>
+        {selectedPage}
+      </div>
     </div>
   );
 }

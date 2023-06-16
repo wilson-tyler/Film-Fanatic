@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect } from 'react';
-import HomeContainer from './HomeContainer.jsx'
+import HomeContainer from './HomeContainer.jsx';
 
 
 export default function LoginContainer() {
@@ -24,9 +24,9 @@ export default function LoginContainer() {
     loggedIn
       ? <HomeContainer />
       : <div id='loginContainer'>
-        <div className='filmFanaticHomeTitle'>Film Fanatic</div>
+        <div className='filmFanaticHomeTitle'>HUNT'S SPREADSHEET</div>
         <br />
-        Please sign in through the application you trust the most to begin browsing titles.
+        Please sign in through the application you trust the most to begin using Spreadsheet.
         <br />
         <br />
         <a id='githubOAuth' href={`https://github.com/login/oauth/authorize?client_id=${process.env.CLIENT_ID}`}></a>
